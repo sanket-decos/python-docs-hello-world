@@ -6,7 +6,6 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
-
                    
 class CustomerSatisfactionTeams(Resource):
     def get(self):
