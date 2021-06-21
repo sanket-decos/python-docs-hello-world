@@ -35,7 +35,6 @@ class CustomerSatisfactionEmployees(Resource):
         return {'data': data}, 200  # return data and 200 OK
 
 
-api.add_resource(Users, '/users')  # add endpoints
 api.add_resource(CustomerSatisfactionTeams, '/customerSatisfactionTeams')  # add endpoints
 api.add_resource(CustomerSatisfactionEmployees, '/customerSatisfactionEmployees')  # add endpoints
 
