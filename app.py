@@ -69,8 +69,11 @@ class CSOpenIncidentsTicketsByTypePriority(Resource):
         df = df[df.status.isin(['Bij Development', 'In afwachting van externe partij', 'Intern informatie opgevraagd', 'Open', 'Pending', 'Wachten op klantreactie', 'Werkzaamheden ingepland'])]
         df = df.loc[(df['message'] == 'Incident / storing')]
         #Group by
-        data = df.groupby(['type', 'priority']).size().reset_index(name='count')
-        data = data.to_dict()  # convert dataframe to dict
+        datagroup = df.groupby(['type', 'priority']).size().reset_index(name='countt')
+        pivoted = datagroup.pivot(index='type', columns= 'priority', values='countt')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+
+        data = flattened.to_dict()  # convert dataframe to dict
         return {'data': data}, 200  # return data and 200 OK
 
                     
