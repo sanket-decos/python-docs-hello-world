@@ -6,6 +6,7 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
+
                    
 class CustomerSatisfactionTeams(Resource):
     def get(self):
@@ -82,8 +83,9 @@ class CSOpenIncidentsTicketsByStatus(Resource):
         df = df.loc[(df['message'] == 'Incident / storing')]
         #Group by
         data = df.groupby(['status']).size().reset_index(name='count')
-        data = data.to_dict()  # convert dataframe to dict
-        return {'data': data}, 200  # return data and 200 OK
+        #data = data.to_dict()  # convert dataframe to dict
+        json_values = data.to_json(orient ='values')
+        return {'data': json_values}, 200  # return data and 200 OK
 
                     
 class CSOpenIncidentsTicketsByGroup(Resource):
@@ -124,8 +126,9 @@ class CSOpenIncidentsTicketsByGroup(Resource):
         )
         data = df.sort_values('groupNameClubbed_cat')
 
-        data = data.to_dict()  # convert dataframe to dict
-        return {'data': data}, 200  # return data and 200 OK
+        #data = data.to_dict()  # convert dataframe to dict
+        json_values = data.to_json(orient ='values')
+        return {'data': json_values}, 200  # return data and 200 OK
 
 
 api.add_resource(CustomerSatisfactionTeams, '/customerSatisfactionTeams')  # add endpoints
