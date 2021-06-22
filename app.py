@@ -134,13 +134,84 @@ class CSOpenIncidentsTicketsByGroup(Resource):
         return {'data': json_values}, 200  # return data and 200 OK
 
 
+
+
+                    
+class CSAllOpenTicketsTicketsByAgentMessage(Resource):
+    def get(self):
+
+        df = pd.read_csv('customerSupport.csv')  # read local CSV
+        #Apply filters
+        df = df[df.status.isin(['Bij Development', 'In afwachting van externe partij', 'Intern informatie opgevraagd', 'Open', 'Pending', 'Wachten op klantreactie', 'Werkzaamheden ingepland'])]
+        df = df[~df.message.isin(['Project', ''])]
+        #Group by
+        datagroup = df.groupby(['agent', 'message']).size().reset_index(name='countt')
+        pivoted = datagroup.pivot(index='agent', columns= 'message', values='countt')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+        data = flattened.to_dict()  # convert dataframe to dict
+
+        return {'data': data}, 200  # return data and 200 OK
+
+                    
+class CSAllOpenTicketsTicketsByTypeMessage(Resource):
+    def get(self):
+
+        df = pd.read_csv('customerSupport.csv')  # read local CSV
+        #Apply filters
+        df = df[df.status.isin(['Bij Development', 'In afwachting van externe partij', 'Intern informatie opgevraagd', 'Open', 'Pending', 'Wachten op klantreactie', 'Werkzaamheden ingepland'])]
+        df = df[~df.message.isin(['Project', ''])]
+        #Group by
+        datagroup = df.groupby(['type', 'message']).size().reset_index(name='countt')
+        pivoted = datagroup.pivot(index='type', columns= 'message', values='countt')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+        data = flattened.to_dict()  # convert dataframe to dict
+        
+        return {'data': data}, 200  # return data and 200 OK
+
+                    
+class CSAllOpenTicketsTicketsByTypePriority(Resource):
+    def get(self):
+
+        df = pd.read_csv('customerSupport.csv')  # read local CSV
+        #Apply filters
+        df = df[df.status.isin(['Bij Development', 'In afwachting van externe partij', 'Intern informatie opgevraagd', 'Open', 'Pending', 'Wachten op klantreactie', 'Werkzaamheden ingepland'])]
+        df = df[~df.message.isin(['Project', ''])]
+        #Group by
+        datagroup = df.groupby(['type', 'priority']).size().reset_index(name='countt')
+        pivoted = datagroup.pivot(index='type', columns= 'priority', values='countt')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+        data = flattened.to_dict()  # convert dataframe to dict
+        
+        return {'data': data}, 200  # return data and 200 OK
+
+                    
+class CSAllOpenTicketsTicketsByCompanyname(Resource):
+    def get(self):
+
+        df = pd.read_csv('customerSupport.csv')  # read local CSV
+        #Apply filters
+        df = df[df.status.isin(['Bij Development', 'In afwachting van externe partij', 'Intern informatie opgevraagd', 'Open', 'Pending', 'Wachten op klantreactie', 'Werkzaamheden ingepland'])]
+        df = df[~df.message.isin(['Project', ''])]
+        #Group by
+        data = df.groupby(['companyName']).size().reset_index(name='count')
+        data = data.to_dict()  # convert dataframe to dict
+        
+        return {'data': data}, 200  # return data and 200 OK
+
+
 api.add_resource(CustomerSatisfactionTeams, '/customerSatisfactionTeams')  # add endpoints
 api.add_resource(CustomerSatisfactionEmployees, '/customerSatisfactionEmployees')  # add endpoints
+
 api.add_resource(CSOpenIncidentsTicketsByType, '/CSOpenIncidentsTicketsByType')  # add endpoints
 api.add_resource(CSOpenIncidentsTicketsByAgent, '/CSOpenIncidentsTicketsByAgent')  # add endpoints
 api.add_resource(CSOpenIncidentsTicketsByTypePriority, '/CSOpenIncidentsTicketsByTypePriority')  # add endpoints
 api.add_resource(CSOpenIncidentsTicketsByStatus, '/CSOpenIncidentsTicketsByStatus')  # add endpoints
 api.add_resource(CSOpenIncidentsTicketsByGroup, '/CSOpenIncidentsTicketsByGroup')  # add endpoints
+
+api.add_resource(CSAllOpenTicketsTicketsByAgentMessage, '/CSAllOpenTicketsTicketsByAgentMessage')  # add endpoints
+api.add_resource(CSAllOpenTicketsTicketsByTypeMessage, '/CSAllOpenTicketsTicketsByTypeMessage')  # add endpoints
+api.add_resource(CSAllOpenTicketsTicketsByTypePriority, '/CSAllOpenTicketsTicketsByTypePriority')  # add endpoints
+api.add_resource(CSAllOpenTicketsTicketsByCompanyname, '/CSAllOpenTicketsTicketsByCompanyname')  # add endpoints
 
 if __name__ == '__main__':
     app.run()  # run our Flask app
