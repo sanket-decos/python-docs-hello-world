@@ -340,7 +340,7 @@ class CSTimeAnalysisTicketsByMonthQuarter(Resource):
 
         data['seriesDrill'] = series
 
-        data = data.replace("'", "")        
+        #data = data.replace("'", "")        
         return {'data': data}, 200  # return data and 200 OK
 
                     
@@ -352,6 +352,7 @@ class CSTimeAnalysisTicketsByWeek(Resource):
         data = df.groupby(['Year', 'WeekNumber'])["New", "Closed", "OpenTicketstodate"].sum().reset_index()
         
         data = data.to_dict()  # convert dataframe to dict
+        
         return {'data': data}, 200  # return data and 200 OK
 
 
