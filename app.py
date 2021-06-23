@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 import pandas as pd
+import ast
 
 app = Flask(__name__)
 CORS(app)
@@ -327,15 +328,17 @@ class CSTimeAnalysisTicketsByMonthQuarter(Resource):
         for quarter in datamain['Quarter']:
             dftemp = datamain[datamain.Quarter.isin([quarter])][['Month', 'New']]
             temp = {}
-            temp['id'] = '"' + quarter + '- New' + '"'
+            temp['id'] = quarter + '- New'
             temp['data'] = dftemp.to_json(orient ='values')
+            temp['data'] = ast.literal_eval(temp['data'])
             series.append(temp)
             
         for quarter in datamain['Quarter']:
             dftemp = datamain[datamain.Quarter.isin([quarter])][['Month', 'Closed']]
             temp = {}
-            temp['id'] = '"' + quarter + '- Closed' + '"'
+            temp['id'] = quarter + '- Closed'
             temp['data'] = dftemp.to_json(orient ='values')
+            temp['data'] = ast.literal_eval(temp['data'])
             series.append(temp)
 
         data['seriesDrill'] = series
