@@ -302,6 +302,58 @@ class CSClosedTicketsTicketsByCompanyname(Resource):
         
         return {'data': data}, 200  # return data and 200 OK
 
+                    
+class CSTimeAnalysisTicketsByMonthQuarter(Resource):
+    def get(self):
+
+        df = pd.read_csv('customerSupportSummary.csv')  # read local CSV
+        
+        datamain = df.groupby(['Quarter', 'Month'])["New", "Closed", "OpenTicketstodate"].sum().reset_index()
+
+        data = {}
+
+        datanew = df.groupby(['Quarter'])["New"].sum().reset_index()
+        datanew['drilldown'] = datanew['Quarter'] + '- New'
+        datanew.columns = ['name', 'y', 'drilldown']
+        data['seriesNew'] = datanew.to_json(orient ='records')
+
+        dataclosed = df.groupby(['Quarter'])["Closed"].sum().reset_index()
+        dataclosed['drilldown'] = dataclosed['Quarter'] + '- Closed'
+        dataclosed.columns = ['name', 'y', 'drilldown']
+        data['seriesClosed'] = dataclosed.to_json(orient ='records')
+
+        series = []
+
+        for quarter in datamain['Quarter']:
+            dftemp = datamain[datamain.Quarter.isin([quarter])][['Month', 'New']]
+            temp = {}
+            temp['id'] = '"' + quarter + '- New' + '"'
+            temp['data'] = dftemp.to_json(orient ='values')
+            series.append(temp)
+            
+        for quarter in datamain['Quarter']:
+            dftemp = datamain[datamain.Quarter.isin([quarter])][['Month', 'Closed']]
+            temp = {}
+            temp['id'] = '"' + quarter + '- Closed' + '"'
+            temp['data'] = dftemp.to_json(orient ='values')
+            series.append(temp)
+
+        data['seriesDrill'] = series
+
+        data = data.replace("'", "")        
+        return {'data': data}, 200  # return data and 200 OK
+
+                    
+class CSTimeAnalysisTicketsByWeek(Resource):
+    def get(self):
+
+        df = pd.read_csv('customerSupportSummary.csv')  # read local CSV
+        #Group by
+        data = df.groupby(['Year', 'WeekNumber'])["New", "Closed", "OpenTicketstodate"].sum().reset_index()
+        
+        data = data.to_dict()  # convert dataframe to dict
+        return {'data': data}, 200  # return data and 200 OK
+
 
 api.add_resource(CustomerSatisfactionTeams, '/customerSatisfactionTeams')  # add endpoints
 api.add_resource(CustomerSatisfactionEmployees, '/customerSatisfactionEmployees')  # add endpoints
@@ -322,6 +374,9 @@ api.add_resource(CSClosedTicketsTicketsByGroup, '/CSClosedTicketsTicketsByGroup'
 api.add_resource(CSClosedTicketsTicketsByPriority, '/CSClosedTicketsTicketsByPriority')  # add endpoints
 api.add_resource(CSClosedTicketsTicketsBySolutionStatus, '/CSClosedTicketsTicketsBySolutionStatus')  # add endpoints
 api.add_resource(CSClosedTicketsTicketsByCompanyname, '/CSClosedTicketsTicketsByCompanyname')  # add endpoints
+
+api.add_resource(CSTimeAnalysisTicketsByMonthQuarter, '/CSTimeAnalysisTicketsByMonthQuarter')  # add endpoints
+api.add_resource(CSTimeAnalysisTicketsByWeek, '/CSTimeAnalysisTicketsByWeek')  # add endpoints
 
 if __name__ == '__main__':
     app.run()  # run our Flask app
