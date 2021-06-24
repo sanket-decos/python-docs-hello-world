@@ -368,7 +368,7 @@ class CSSLAOpenTickets(Resource):
         df = df[df.status.isin(['Bij Development', 'In afwachting van externe partij', 'Intern informatie opgevraagd', 'Open', 'Pending', 'Wachten op klantreactie', 'Werkzaamheden ingepland'])]
         df = df[~df.message.isin(['Project', ''])]
         
-        data = []
+        data = {}
 
         #Bar graph: Group by
         datagroup1 = df.groupby(['status', 'priority']).size().reset_index(name='countt')
