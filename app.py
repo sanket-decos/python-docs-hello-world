@@ -3,6 +3,7 @@ from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 import pandas as pd
 import ast
+import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -128,7 +129,7 @@ class CSOpenIncidentsTicketsByGroup(Resource):
             categories=['Intake','Support 1e lijn','Support 2e lijn','Technisch consultants and Functioneel consultants','Development','Others'], 
             ordered=True
         )
-        data = df.sort_values('groupNameClubbed_cat')
+        data = df[['groupNameClubbed_cat', 'count']].sort_values('groupNameClubbed_cat')
 
         #data = data.to_dict()  # convert dataframe to dict
         json_values = data.to_json(orient ='values')
@@ -254,7 +255,7 @@ class CSClosedTicketsTicketsByGroup(Resource):
             categories=['Intake','Support 1e lijn','Support 2e lijn','Technisch consultants and Functioneel consultants','Development','Others'], 
             ordered=True
         )
-        data = df.sort_values('groupNameClubbed_cat')
+        data = df[['groupNameClubbed_cat', 'count']].sort_values('groupNameClubbed_cat')
 
         #data = data.to_dict()  # convert dataframe to dict
         json_values = data.to_json(orient ='values')
@@ -357,6 +358,52 @@ class CSTimeAnalysisTicketsByWeek(Resource):
         data = data.to_dict()  # convert dataframe to dict
         
         return {'data': data}, 200  # return data and 200 OK
+        
+                    
+class CSSLAOpenTickets(Resource):
+    def get(self):
+
+        df = pd.read_csv('customerSupport.csv')  # read local CSV
+        #Apply filters
+        df = df[df.status.isin(['Bij Development', 'In afwachting van externe partij', 'Intern informatie opgevraagd', 'Open', 'Pending', 'Wachten op klantreactie', 'Werkzaamheden ingepland'])]
+        df = df[~df.message.isin(['Project', ''])]
+        
+        data = []
+
+        #Bar graph: Group by
+        datagroup1 = df.groupby(['status', 'priority']).size().reset_index(name='countt')
+        pivoted = datagroup1.pivot(index='status', columns= 'priority', values='countt')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+        data['BarGraph'] = flattened.to_dict()  # convert dataframe to dict
+
+        #Group by
+        datagroup2 = df.groupby(['currentStatus']).size().reset_index(name='count')
+        data['PieSLA'] = datagroup2.to_json(orient ='values')
+
+        #Group by
+        datagroup3 = df.groupby(['status']).size().reset_index(name='count')
+        data['PieStatus'] = datagroup3.to_json(orient ='values')
+        
+        return {'data': data}, 200  # return data and 200 OK
+        
+                    
+class CSSLAClosedTickets(Resource):
+    def get(self):
+
+        df = pd.read_csv('customerSupport.csv')  # read local CSV
+        df = df[~df.closedTime.isin([''])]
+
+        df['closedTime'] = pd.to_datetime(df['closedTime'].str.slice(0,10), format='%Y-%m-%d', errors='ignore')
+        filterdate = (datetime.datetime.now() - datetime.timedelta(days=30)).strftime('%Y-%m-%d')
+        df = df.loc[(df['closedTime'] >= filterdate)]
+        
+        #Group by
+        datagroup1 = df.groupby(['agent', 'solutionStatus']).size().reset_index(name='countt')
+        pivoted = datagroup1.pivot(index='agent', columns= 'solutionStatus', values='countt')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+        data = flattened.to_dict()  # convert dataframe to dict
+        
+        return {'data': data}, 200  # return data and 200 OK
 
 
 api.add_resource(CustomerSatisfactionTeams, '/customerSatisfactionTeams')  # add endpoints
@@ -381,6 +428,9 @@ api.add_resource(CSClosedTicketsTicketsByCompanyname, '/CSClosedTicketsTicketsBy
 
 api.add_resource(CSTimeAnalysisTicketsByMonthQuarter, '/CSTimeAnalysisTicketsByMonthQuarter')  # add endpoints
 api.add_resource(CSTimeAnalysisTicketsByWeek, '/CSTimeAnalysisTicketsByWeek')  # add endpoints
+
+api.add_resource(CSSLAOpenTickets, '/CSSLAOpenTickets')  # add endpoints
+api.add_resource(CSSLAClosedTickets, '/CSSLAClosedTickets')  # add endpoints
 
 if __name__ == '__main__':
     app.run()  # run our Flask app
