@@ -191,7 +191,7 @@ class CSClosedTickets(Resource):
             ordered=True
         )
         dataTicketsByGroup = dfTicketsByGroup[['groupNameClubbed_cat', 'count']].sort_values('groupNameClubbed_cat')
-        data['TicketsByAgentMessage'] = dataTicketsByGroup.to_json(orient ='values')
+        data['TicketsByGroup'] = dataTicketsByGroup.to_json(orient ='values')
 
         #TicketsByPriority
         dataTicketsByPriority = df.groupby(['priority']).size().reset_index(name='count')
