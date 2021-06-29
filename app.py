@@ -12,27 +12,19 @@ api = Api(app)
                    
 class CustomerSatisfactionTeams(Resource):
     def get(self):
-        #parser = reqparse.RequestParser()  # initialize
-        #parser.add_argument('userId', required=True)  # add args
-        #args = parser.parse_args()  # parse arguments to dictionary
 
         data = pd.read_csv('customerSatisfactionTeams.csv')  # read local CSV
-        #df = pd.read_csv('customerSatisfactionTeams.csv')  # read local CSV
-        #data = df.loc[df['userId'] == args['userId']]
         data = data[['Team', 'Quarter', 'Rating']]
-        data = data.to_dict()  # convert dataframe to dict
+        pivoted = data.pivot(index='Quarter', columns= 'Team', values='Rating')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+        data = flattened.to_dict()  # convert dataframe to dict
         return {'data': data}, 200  # return data and 200 OK
 
                     
 class CustomerSatisfactionEmployees(Resource):
     def get(self):
-        #parser = reqparse.RequestParser()  # initialize
-        #parser.add_argument('TeamName', required=True)  # add args
-        #args = parser.parse_args()  # parse arguments to dictionary
 
-        #data = pd.read_csv('customerSatisfactionEmployees.csv')  # read local CSV
         df = pd.read_csv('customerSatisfactionEmployees.csv')  # read local CSV
-        #data = df.loc[df['TeamName'] == args['TeamName']][['Employee', 'Communication', 'Knowledge', 'TotalImpression']]
         data = df[['Employee', 'Communication', 'Knowledge', 'TotalImpression']]
         data = data.to_dict()  # convert dataframe to dict
         return {'data': data}, 200  # return data and 200 OK
@@ -371,21 +363,96 @@ class CSSLAClosedTickets(Resource):
         data = dataClosedTickets  # convert dataframe to dict
         
         return {'data': data}, 200  # return data and 200 OK
+        
+                    
+class ServicesTeams(Resource):
+    def get(self):
+
+        df = pd.read_csv('servicesTeams.csv')  # read local CSV
+        data = {}
+
+        for team in ['Front Office Integration', 'JZD']:
+            temp = {}
+            df_filtered_team = df[df.team.isin([team])]
+            for category in df_filtered_team['category']:
+                df_filtered_team_cat = df_filtered_team[df_filtered_team.category.isin([category])]
+                df_filtered_team_cat = df_filtered_team_cat.sort_values(['Month number'], ascending=[True])
+                temp[category] = df_filtered_team_cat[['Month', 'Target', 'Result']].to_dict()
+            data[team] = temp
+
+        for team in ['Overall', 'Customer Support']:
+            df_filtered_team = df[df.team.isin([team])]
+            df_filtered_team = df_filtered_team.sort_values(['Month number'], ascending=[True])
+            data[team] = df_filtered_team[['Month', 'Target', 'Result']].to_dict()     
+        
+        return {'data': data}, 200  # return data and 200 OK
+        
+                    
+class ServicesEmployees(Resource):
+    def get(self):
+
+        df = pd.read_csv('servicesEmployees.csv')  # read local CSV
+        data = {}
+
+        for column in ['Current Target', 'Current Result', 'DifferenceYTD']:
+            dataTemp = df.groupby(['Employee'])[column].sum().reset_index()
+            dataTemp['drilldown'] = dataTemp['Employee'] + '- ' + str(column)
+            dataTemp.columns = ['name', 'y', 'drilldown']
+            data['series'+ str(column)] = dataTemp.to_json(orient ='records')    
+
+        dfmain = df.groupby(['Employee', 'Month', 'Month number'])["Target", "Result", "DifferenceYTD"].sum().reset_index()
+        series = []
+
+        for column in ['Target', 'Result']:
+            for Employee in dfmain['Employee']:
+                dftemp = dfmain[dfmain.Employee.isin([Employee])][['Month', column, 'Month number']]
+                dftemp = dftemp.sort_values(['Month number'], ascending=[True])
+                temp = {}
+                temp['id'] = Employee + '- Current ' + str(column)
+                temp['data'] = dftemp[['Month', column]].to_json(orient ='values')
+                temp['data'] = ast.literal_eval(temp['data'])
+                series.append(temp)
+
+        for Employee in dfmain['Employee']:
+            dftemp = dfmain[dfmain.Employee.isin([Employee])][['Month', 'DifferenceYTD', 'Month number']]
+            dftemp = dftemp.sort_values(['Month number'], ascending=[True])
+            temp = {}
+            temp['id'] = Employee + '- DifferenceYTD'
+            temp['data'] = dftemp[['Month', 'DifferenceYTD']].to_json(orient ='values')
+            temp['data'] = ast.literal_eval(temp['data'])
+            series.append(temp)
+
+        data['seriesDrill'] = series
+
+        return {'data': data}, 200  # return data and 200 OK
+        
+                    
+class Development(Resource):
+    def get(self):
+
+        df = pd.read_csv('servicesTeams.csv')
+
+        
+        data = df.to_dict()  
+
+        return {'data': data}, 200  # return data and 200 OK
 
 
-api.add_resource(CustomerSatisfactionTeams, '/customerSatisfactionTeams')  # add endpoints
-api.add_resource(CustomerSatisfactionEmployees, '/customerSatisfactionEmployees')  # add endpoints
+
+api.add_resource(CustomerSatisfactionTeams, '/CustomerSatisfactionTeams')  # add endpoints
+api.add_resource(CustomerSatisfactionEmployees, '/CustomerSatisfactionEmployees')  # add endpoints
 
 api.add_resource(CSOpenIncidents, '/CSOpenIncidents')  # add endpoints
-
 api.add_resource(CSAllOpenTickets, '/CSAllOpenTickets')  # add endpoints
-
 api.add_resource(CSClosedTickets, '/CSClosedTickets')  # add endpoints
-
 api.add_resource(CSTimeAnalysis, '/CSTimeAnalysis')  # add endpoints
-
 api.add_resource(CSSLAOpenTickets, '/CSSLAOpenTickets')  # add endpoints
 api.add_resource(CSSLAClosedTickets, '/CSSLAClosedTickets')  # add endpoints
+
+api.add_resource(ServicesTeams, '/ServicesTeams')  # add endpoints
+api.add_resource(ServicesEmployees, '/ServicesEmployees')  # add endpoints
+
+api.add_resource(Development, '/Development')  # add endpoints
 
 if __name__ == '__main__':
     app.run()  # run our Flask app
