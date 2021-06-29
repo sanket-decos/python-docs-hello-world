@@ -346,7 +346,18 @@ class CSSLAClosedTickets(Resource):
         datagroup1 = df.groupby(['agent', 'solutionStatus']).size().reset_index(name='countt')
         pivoted = datagroup1.pivot(index='agent', columns= 'solutionStatus', values='countt')
         flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
-        data = flattened.to_dict()  # convert dataframe to dict
+        dataClosedTickets = {}
+        series = []
+        for col in flattened.columns:
+            if col == 'agent':
+                dataClosedTickets['categories'] = flattened[col].values.tolist()
+            else:
+                temp = {}
+                temp['name'] = str(col)
+                temp['data'] = flattened[col].values.tolist()
+                series.append(temp)
+        dataClosedTickets['series'] = series  
+        data = dataClosedTickets  # convert dataframe to dict
         
         return {'data': data}, 200  # return data and 200 OK
 
