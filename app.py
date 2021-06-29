@@ -26,13 +26,14 @@ class CustomerSatisfactionTeams(Resource):
                     
 class CustomerSatisfactionEmployees(Resource):
     def get(self):
-        parser = reqparse.RequestParser()  # initialize
-        parser.add_argument('TeamName', required=True)  # add args
-        args = parser.parse_args()  # parse arguments to dictionary
+        #parser = reqparse.RequestParser()  # initialize
+        #parser.add_argument('TeamName', required=True)  # add args
+        #args = parser.parse_args()  # parse arguments to dictionary
 
         #data = pd.read_csv('customerSatisfactionEmployees.csv')  # read local CSV
         df = pd.read_csv('customerSatisfactionEmployees.csv')  # read local CSV
-        data = df.loc[df['TeamName'] == args['TeamName']][['Employee', 'Communication', 'Knowledge', 'TotalImpression']]
+        #data = df.loc[df['TeamName'] == args['TeamName']][['Employee', 'Communication', 'Knowledge', 'TotalImpression']]
+        data = df[['Employee', 'Communication', 'Knowledge', 'TotalImpression']]
         data = data.to_dict()  # convert dataframe to dict
         return {'data': data}, 200  # return data and 200 OK
 
@@ -61,7 +62,17 @@ class CSOpenIncidents(Resource):
         datagroup = df.groupby(['type', 'priority']).size().reset_index(name='countt')
         pivoted = datagroup.pivot(index='type', columns= 'priority', values='countt')
         flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
-        dataTicketsByTypePriority = flattened.to_dict()  # convert dataframe to dict
+        dataTicketsByTypePriority = {}
+        series = []
+        for col in flattened.columns:
+            if col == 'type':
+                dataTicketsByTypePriority['categories'] = flattened[col].values.tolist()
+            else:
+                temp = {}
+                temp['name'] = str(col)
+                temp['data'] = flattened[col].values.tolist()
+                series.append(temp)
+        dataTicketsByTypePriority['series'] = series
         data['TicketsByTypePriority'] = dataTicketsByTypePriority
         
         #TicketsByStatus
@@ -105,8 +116,6 @@ class CSOpenIncidents(Resource):
         return {'data': data}, 200  # return data and 200 OK
 
 
-
-                    
 class CSAllOpenTickets(Resource):
     def get(self):
 
@@ -140,9 +149,6 @@ class CSAllOpenTickets(Resource):
         data['TicketsByCompanyname'] = dataTicketsByCompanyname.to_dict()  # convert dataframe to dict
 
         return {'data': data}, 200  # return data and 200 OK
-
-
-
 
 
 class CSClosedTickets(Resource):
@@ -206,8 +212,6 @@ class CSClosedTickets(Resource):
         data['TicketsByCompanyname'] = dataTicketsByCompanyname.to_dict()  # convert dataframe to dict
         
         return {'data': data}, 200  # return data and 200 OK
-
-
 
 
 class CSTimeAnalysis(Resource):
