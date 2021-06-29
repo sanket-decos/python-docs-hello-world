@@ -130,19 +130,52 @@ class CSAllOpenTickets(Resource):
         datagroup = df.groupby(['agent', 'message']).size().reset_index(name='countt')
         pivoted = datagroup.pivot(index='agent', columns= 'message', values='countt')
         flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
-        data['TicketsByAgentMessage'] = flattened.to_dict()  # convert dataframe to dict
+        dataTicketsByAgentMessage = {}
+        series = []
+        for col in flattened.columns:
+            if col == 'agent':
+                dataTicketsByAgentMessage['categories'] = flattened[col].values.tolist()
+            else:
+                temp = {}
+                temp['name'] = str(col)
+                temp['data'] = flattened[col].values.tolist()
+                series.append(temp)
+        dataTicketsByAgentMessage['series'] = series       
+        data['TicketsByAgentMessage'] = dataTicketsByAgentMessage  # convert dataframe to dict
         
         #TicketsByTypeMessage
         datagroup = df.groupby(['type', 'message']).size().reset_index(name='countt')
         pivoted = datagroup.pivot(index='type', columns= 'message', values='countt')
         flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
-        data['TicketsByTypeMessage'] = flattened.to_dict()  # convert dataframe to dict
+        dataTicketsByTypeMessage = {}
+        series = []
+        for col in flattened.columns:
+            if col == 'type':
+                dataTicketsByTypeMessage['categories'] = flattened[col].values.tolist()
+            else:
+                temp = {}
+                temp['name'] = str(col)
+                temp['data'] = flattened[col].values.tolist()
+                series.append(temp)
+        dataTicketsByTypeMessage['series'] = series  
+        data['TicketsByTypeMessage'] = dataTicketsByTypeMessage  # convert dataframe to dict
         
         #TicketsByTypePriority
         datagroup = df.groupby(['type', 'priority']).size().reset_index(name='countt')
         pivoted = datagroup.pivot(index='type', columns= 'priority', values='countt')
         flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
-        data['TicketsByTypePriority'] = flattened.to_dict()  # convert dataframe to dict
+        dataTicketsByTypePriority = {}
+        series = []
+        for col in flattened.columns:
+            if col == 'type':
+                dataTicketsByTypePriority['categories'] = flattened[col].values.tolist()
+            else:
+                temp = {}
+                temp['name'] = str(col)
+                temp['data'] = flattened[col].values.tolist()
+                series.append(temp)
+        dataTicketsByTypePriority['series'] = series  
+        data['TicketsByTypePriority'] = dataTicketsByTypePriority  # convert dataframe to dict
         
         #TicketsByCompanyname
         dataTicketsByCompanyname = df.groupby(['companyName']).size().reset_index(name='count')
@@ -165,7 +198,18 @@ class CSClosedTickets(Resource):
         datagroup = df.groupby(['agent', 'message']).size().reset_index(name='countt')
         pivoted = datagroup.pivot(index='agent', columns= 'message', values='countt')
         flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
-        data['TicketsByAgentMessage'] = flattened.to_dict()  # convert dataframe to dict
+        dataTicketsByAgentMessage = {}
+        series = []
+        for col in flattened.columns:
+            if col == 'agent':
+                dataTicketsByAgentMessage['categories'] = flattened[col].values.tolist()
+            else:
+                temp = {}
+                temp['name'] = str(col)
+                temp['data'] = flattened[col].values.tolist()
+                series.append(temp)
+        dataTicketsByAgentMessage['series'] = series  
+        data['TicketsByAgentMessage'] = dataTicketsByAgentMessage  # convert dataframe to dict
         
 
         #TicketsByGroup
