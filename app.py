@@ -319,7 +319,18 @@ class CSSLAOpenTickets(Resource):
         datagroup1 = df.groupby(['status', 'priority']).size().reset_index(name='countt')
         pivoted = datagroup1.pivot(index='status', columns= 'priority', values='countt')
         flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
-        data['BarGraph'] = flattened.to_dict()  # convert dataframe to dict
+        dataOpenTickets = {}
+        series = []
+        for col in flattened.columns:
+            if col == 'status':
+                dataOpenTickets['categories'] = flattened[col].values.tolist()
+            else:
+                temp = {}
+                temp['name'] = str(col)
+                temp['data'] = flattened[col].values.tolist()
+                series.append(temp)
+        dataOpenTickets['series'] = series  
+        data['BarGraph'] = dataOpenTickets  # convert dataframe to dict
 
         #Group by
         datagroup2 = df.groupby(['currentStatus']).size().reset_index(name='count')
