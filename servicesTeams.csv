@@ -1,0 +1,73 @@
+﻿team,category,Month,Target,Result,Month number
+Front Office Integration,External,Jan,16269,22074.25,1
+Front Office Integration,External,Feb,15301,22877.5,2
+Front Office Integration,External,Mar,18204,25630,3
+Front Office Integration,External,Apr,16752.5,25529,4
+Front Office Integration,External,May,16259,20143.75,5
+Front Office Integration,External,Jun,17237,0,6
+Front Office Integration,External,Jul,17237,0,7
+Front Office Integration,External,Aug,17237,0,8
+Front Office Integration,External,Sept,17237,0,9
+Front Office Integration,External,Oct,15785,0,10
+Front Office Integration,External,Nov,17237,0,11
+Front Office Integration,External,Dec,18204,0,12
+JZD,External,Jan,16269,22074.25,1
+JZD,External,Feb,15301,22877.5,2
+JZD,External,Mar,18204,25630,3
+JZD,External,Apr,16752.5,25529,4
+JZD,External,May,16259,20143.75,5
+JZD,External,Jun,17237,0,6
+JZD,External,Jul,17237,0,7
+JZD,External,Aug,17237,0,8
+JZD,External,Sept,17237,0,9
+JZD,External,Oct,15785,0,10
+JZD,External,Nov,17237,0,11
+JZD,External,Dec,18204,0,12
+JZD,Internal,Jan,147595,137840.38,1
+JZD,Internal,Feb,128566,142143.13,2
+JZD,Internal,Mar,150291,160044.25,3
+JZD,Internal,Apr,138523,149165.94,4
+JZD,Internal,May,117179,159718,5
+JZD,Internal,Jun,135339,0,6
+JZD,Internal,Jul,125912,0,7
+JZD,Internal,Aug,112152,0,8
+JZD,Internal,Sept,119792,0,9
+JZD,Internal,Oct,122736,0,10
+JZD,Internal,Nov,158990,0,11
+JZD,Internal,Dec,123727,0,12
+Front Office Integration,Internal,Jan,168485.67,149640,1
+Front Office Integration,Internal,Feb,141318.67,133274,2
+Front Office Integration,Internal,Mar,172726.67,184295.25,3
+Front Office Integration,Internal,Apr,154422.67,149747.75,4
+Front Office Integration,Internal,May,145645.67,108694.32,5
+Front Office Integration,Internal,Jun,159445.67,0,6
+Front Office Integration,Internal,Jul,147645.67,0,7
+Front Office Integration,Internal,Aug,125565.67,0,8
+Front Office Integration,Internal,Sept,146085.67,0,9
+Front Office Integration,Internal,Oct,143442.67,0,10
+Front Office Integration,Internal,Nov,183605.67,0,11
+Front Office Integration,Internal,Dec,165846.67,0,12
+Customer Support,Internal,Jan,12706,6810,1
+Customer Support,Internal,Feb,12081,6260,2
+Customer Support,Internal,Mar,13945,4735,3
+Customer Support,Internal,Apr,13012.33,4350,4
+Customer Support,Internal,May,12705.33,4402.5,5
+Customer Support,Internal,Jun,12705.33,0,6
+Customer Support,Internal,Jul,13324.33,0,7
+Customer Support,Internal,Aug,13324.33,0,8
+Customer Support,Internal,Sept,13324.33,0,9
+Customer Support,Internal,Oct,12393.33,0,10
+Customer Support,Internal,Nov,13324.33,0,11
+Customer Support,Internal,Dec,13944.33,0,12
+Overall,NA,Jan,361324.67,338438.88,1
+Overall,NA,Feb,312567.67,327432.13,2
+Overall,NA,Mar,373370.67,400334.5,3
+Overall,NA,Apr,339463,354321.69,4
+Overall,NA,May,308048,313102.32,5
+Overall,NA,Jun,341964,0,6
+Overall,NA,Jul,321356,0,7
+Overall,NA,Aug,285516,0,8
+Overall,NA,Sept,313676,0,9
+Overall,NA,Oct,310142,0,10
+Overall,NA,Nov,390394,0,11
+Overall,NA,Dec,339926,0,12
