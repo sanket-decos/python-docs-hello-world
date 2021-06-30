@@ -1,0 +1,211 @@
+﻿Employee,Employee Drill,Team,Month,Year,recentMonth,Code Review Score,Code Review Received Score,Total Commits,Process Adherence Score,Average Velocity,Productivity Score,Technical Score,Recent Code Review Score,Recent Code Review Received Score,MonthNumber
+Dhananjay Chougule,Dhananjay Chougule,QA Chapter,May,2021,1,0,0,0,33,105,50,0,0,0,5
+Datta Shirke,Datta Shirke,Squad III,January,2021,0,2841,1051,58,44,111,106,40,0,0,1
+Datta Shirke,Datta Shirke,Squad III,February,2021,0,1860,711,46,67,156,254,40,0,0,2
+Datta Shirke,Datta Shirke,Squad III,April,2021,0,1608,1088,47,67,145,152,40,0,0,4
+Datta Shirke,Datta Shirke,Squad III,May,2021,1,1481,694,40,56,151,219,40,1481,694,5
+Datta Shirke,Datta Shirke,Squad III,March,2021,0,3259,1472,88,67,182,247,40,0,0,3
+Pallavi Shingote,Pallavi Shingote,QA Chapter,May,2021,1,0,0,0,33,105,282,17,0,0,5
+Nilesh Pasalkar,Nilesh Pasalkar,Squad II,January,2021,0,1500,563,37,44,47,212,75,0,0,1
+Nilesh Pasalkar,Nilesh Pasalkar,Squad II,February,2021,0,720,341,23,78,56,267,75,0,0,2
+Nilesh Pasalkar,Nilesh Pasalkar,Squad II,March,2021,0,1815,833,52,78,63,289,75,0,0,3
+Nilesh Pasalkar,Nilesh Pasalkar,Squad II,May,2021,1,1333,533,33,67,94,256,75,1333,533,5
+Nilesh Pasalkar,Nilesh Pasalkar,Squad II,April,2021,0,1704,722,67,78,95,297,75,0,0,4
+Neha Singh,Neha Singh,Maintenance,February,2021,0,0,0,0,67,0,0,58,0,0,2
+Neha Singh,Neha Singh,Maintenance,April,2021,0,1529,735,108,67,158,439,58,0,0,4
+Neha Singh,Neha Singh,Maintenance,March,2021,0,667,206,162,67,199,318,58,0,0,3
+Neha Singh,Neha Singh,Maintenance,January,2021,0,1739,951,130,67,125,424,58,0,0,1
+Neha Singh,Neha Singh,Maintenance,May,2021,1,807,500,78,67,146,169,58,807,500,5
+Suraj Punugade,Suraj Punugade,Dev Support,February,2021,0,855,160,6,78,78,274,69,0,0,2
+Suraj Punugade,Suraj Punugade,Dev Support,May,2021,1,281,132,7,78,64,112,73,281,132,5
+Suraj Punugade,Suraj Punugade,Dev Support,January,2021,0,807,105,7,78,114,207,69,0,0,1
+Suraj Punugade,Suraj Punugade,Dev Support,March,2021,0,1056,292,20,78,109,449,69,0,0,3
+Suraj Punugade,Suraj Punugade,Dev Support,April,2021,0,500,333,25,78,118,421,69,0,0,4
+Nevin Javiya,Nevin Javiya,Maintenance,April,2021,0,444,444,12,44,158,255,0,0,0,4
+Nevin Javiya,Nevin Javiya,Maintenance,May,2021,1,381,143,31,44,146,169,60,381,143,5
+Tristan Caspers,Tristan Caspers,Dev Support,May,2021,1,35,79,20,56,146,112,56,35,79,5
+Tristan Caspers,Tristan Caspers,Dev Support,April,2021,0,0,45,2,56,118,145,0,0,0,4
+Tristan Caspers,Tristan Caspers,Dev Support,March,2021,0,61,0,0,56,109,69,0,0,0,3
+Berend Engelbrecht,Berend Engelbrecht,Dev Support,January,2021,0,342,32,11,78,114,200,79,0,0,1
+Berend Engelbrecht,Berend Engelbrecht,Dev Support,April,2021,0,978,900,36,78,118,487,79,0,0,4
+Berend Engelbrecht,Berend Engelbrecht,Dev Support,March,2021,0,1378,1433,77,78,109,211,79,0,0,3
+Berend Engelbrecht,Berend Engelbrecht,Dev Support,February,2021,0,488,762,38,78,78,93,79,0,0,2
+Berend Engelbrecht,Berend Engelbrecht,Dev Support,May,2021,1,667,737,46,67,64,99,79,667,737,5
+Erik Tijssen,Erik Tijssen,Dev Support,March,2021,0,667,29,1,56,109,149,33,0,0,3
+Erik Tijssen,Erik Tijssen,Dev Support,January,2021,0,1739,54,5,44,114,181,33,0,0,1
+Erik Tijssen,Erik Tijssen,Dev Support,February,2021,0,76,0,1,56,78,156,33,0,0,2
+Erik Tijssen,Erik Tijssen,Dev Support,April,2021,0,1529,29,8,56,118,180,33,0,0,4
+Erik Tijssen,Erik Tijssen,Dev Support,May,2021,1,807,26,3,44,64,290,33,807,26,5
+Mrudang Dalal,Mrudang Dalal,Maintenance,April,2021,0,1042,594,19,78,158,437,67,0,0,4
+Mrudang Dalal,Mrudang Dalal,Maintenance,January,2021,0,290,136,10,78,125,205,67,0,0,1
+Mrudang Dalal,Mrudang Dalal,Maintenance,March,2021,0,417,406,22,78,199,164,67,0,0,3
+Mrudang Dalal,Mrudang Dalal,Maintenance,May,2021,1,772,447,15,67,146,213,67,772,447,5
+Mrudang Dalal,Mrudang Dalal,Maintenance,February,2021,0,0,0,0,78,0,0,67,0,0,2
+Ajinkya Umratkar,Ajinkya Umratkar,QA Chapter,March,2021,0,56,0,0,67,79,433,43,0,0,3
+Ajinkya Umratkar,Ajinkya Umratkar,QA Chapter,May,2021,1,0,0,0,56,105,346,43,0,0,5
+Ajinkya Umratkar,Ajinkya Umratkar,QA Chapter,April,2021,0,0,0,0,67,86,170,43,0,0,4
+Ajinkya Umratkar,Ajinkya Umratkar,QA Chapter,February,2021,0,0,0,0,67,33,144,43,0,0,2
+Ajinkya Umratkar,Ajinkya Umratkar,QA Chapter,January,2021,0,0,0,0,67,88,238,43,0,0,1
+Ashwini Shelke,Ashwini Shelke,Maintenance,April,2021,0,118,88,9,67,158,263,60,0,0,4
+Ashwini Shelke,Ashwini Shelke,Maintenance,January,2021,0,152,199,9,67,125,288,60,0,0,1
+Ashwini Shelke,Ashwini Shelke,Maintenance,May,2021,1,37,111,7,56,146,143,60,37,111,5
+Ashwini Shelke,Ashwini Shelke,Maintenance,March,2021,0,125,344,12,67,199,234,60,0,0,3
+Ashwini Shelke,Ashwini Shelke,Maintenance,February,2021,0,0,0,0,67,0,0,60,0,0,2
+Nikunj Banker,Nikunj Banker,Squad II,March,2021,0,2190,286,26,78,96,237,75,0,0,3
+Nikunj Banker,Nikunj Banker,Squad II,January,2021,0,1413,679,51,78,62,174,75,0,0,1
+Nikunj Banker,Nikunj Banker,Squad II,April,2021,0,667,464,33,78,95,550,75,0,0,4
+Nikunj Banker,Nikunj Banker,Squad II,February,2021,0,1057,152,17,78,81,144,75,0,0,2
+Nikunj Banker,Nikunj Banker,Squad II,May,2021,1,778,222,32,67,94,331,75,778,222,5
+Mukta Rawat,Mukta Rawat,QA Chapter,January,2021,0,109,54,0,67,88,260,47,0,0,1
+Mukta Rawat,Mukta Rawat,QA Chapter,May,2021,1,0,0,0,67,105,180,63,0,0,5
+Mukta Rawat,Mukta Rawat,QA Chapter,March,2021,0,0,0,0,67,79,380,47,0,0,3
+Mukta Rawat,Mukta Rawat,QA Chapter,April,2021,0,0,31,2,67,86,387,47,0,0,4
+Mukta Rawat,Mukta Rawat,QA Chapter,February,2021,0,0,0,0,67,33,178,47,0,0,2
+Pooja Uppar,Pooja Uppar,QA Chapter,February,2021,0,0,0,0,67,33,944,0,0,0,2
+Pooja Uppar,Pooja Uppar,QA Chapter,March,2021,0,0,0,0,67,79,274,0,0,0,3
+Pooja Uppar,Pooja Uppar,QA Chapter,April,2021,0,0,0,0,67,86,551,0,0,0,4
+Pooja Uppar,Pooja Uppar,QA Chapter,January,2021,0,0,0,0,44,88,243,0,0,0,1
+Pooja Uppar,Pooja Uppar,QA Chapter,May,2021,1,0,0,0,56,105,460,0,0,0,5
+Suyog Patil,Suyog Patil,QA Chapter,May,2021,1,0,0,0,33,105,230,0,0,0,5
+Hemraj Borkhade,Hemraj Borkhade,Squad III,January,2021,0,1739,489,30,67,111,219,65,0,0,1
+Hemraj Borkhade,Hemraj Borkhade,Squad III,March,2021,0,3059,559,29,67,182,194,65,0,0,3
+Hemraj Borkhade,Hemraj Borkhade,Squad III,April,2021,0,2148,361,29,67,145,197,65,0,0,4
+Hemraj Borkhade,Hemraj Borkhade,Squad III,February,2021,0,1848,408,20,67,156,183,65,0,0,2
+Hemraj Borkhade,Hemraj Borkhade,Squad III,May,2021,1,3193,368,25,56,151,190,65,3193,368,5
+Ragesh Pikalmunde,Ragesh Pikalmunde,Squad II,February,2021,0,0,0,0,67,56,38,42,0,0,2
+Ragesh Pikalmunde,Ragesh Pikalmunde,Squad II,March,2021,0,205,308,19,67,63,149,42,0,0,3
+Ragesh Pikalmunde,Ragesh Pikalmunde,Squad II,January,2021,0,145,27,1,44,47,78,42,0,0,1
+Ragesh Pikalmunde,Ragesh Pikalmunde,Squad II,April,2021,0,902,147,8,67,95,132,42,0,0,4
+Ragesh Pikalmunde,Ragesh Pikalmunde,Squad II,May,2021,1,491,105,12,56,94,166,42,491,105,5
+Chaitanya Narkhede,Chaitanya Narkhede,Maintenance,February,2021,0,0,0,0,67,0,0,58,0,0,2
+Chaitanya Narkhede,Chaitanya Narkhede,Maintenance,April,2021,0,78,88,8,67,158,155,58,0,0,4
+Chaitanya Narkhede,Chaitanya Narkhede,Maintenance,January,2021,0,80,151,12,67,125,223,58,0,0,1
+Chaitanya Narkhede,Chaitanya Narkhede,Maintenance,May,2021,1,118,206,20,56,146,330,58,118,206,5
+Chaitanya Narkhede,Chaitanya Narkhede,Maintenance,March,2021,0,133,200,7,67,199,282,58,0,0,3
+Nitin Ghaghada,Nitin Ghaghada,Maintenance,April,2021,0,619,107,46,67,158,19,65,0,0,4
+Nitin Ghaghada,Nitin Ghaghada,Maintenance,May,2021,1,375,313,11,56,146,271,65,375,313,5
+Nitin Ghaghada,Nitin Ghaghada,Maintenance,January,2021,0,361,30,10,44,125,251,65,0,0,1
+Nitin Ghaghada,Nitin Ghaghada,Maintenance,March,2021,0,2000,500,83,67,199,559,65,0,0,3
+Nitin Ghaghada,Nitin Ghaghada,Maintenance,February,2021,0,0,0,0,67,0,0,65,0,0,2
+Bhushan Sanjay Khandelwal,Bhushan Sanjay Khandelwal,Squad II,February,2021,0,1382,335,26,78,56,305,79,0,0,2
+Bhushan Sanjay Khandelwal,Bhushan Sanjay Khandelwal,Squad II,May,2021,1,1000,125,12,67,94,269,79,1000,125,5
+Bhushan Sanjay Khandelwal,Bhushan Sanjay Khandelwal,Squad II,April,2021,0,2222,433,25,78,95,515,79,0,0,4
+Bhushan Sanjay Khandelwal,Bhushan Sanjay Khandelwal,Squad II,March,2021,0,3744,692,38,78,63,260,79,0,0,3
+Bhushan Sanjay Khandelwal,Bhushan Sanjay Khandelwal,Squad II,January,2021,0,1467,467,25,78,47,312,79,0,0,1
+Erik Renes,Erik Renes,Maintenance,April,2021,0,1250,625,57,78,158,189,83,0,0,4
+Erik Renes,Erik Renes,Maintenance,May,2021,1,632,263,20,78,64,109,83,632,263,5
+Erik Renes,Erik Renes,Maintenance,January,2021,0,2464,245,26,78,62,106,83,0,0,1
+Erik Renes,Erik Renes,Maintenance,February,2021,0,163,30,16,78,81,223,83,0,0,2
+Erik Renes,Erik Renes,Maintenance,March,2021,0,3022,700,58,78,96,247,83,0,0,3
+Sanket Suresh Mangsulikar,Sanket Suresh Mangsulikar,QA Chapter,March,2021,0,83,31,6,67,79,372,73,0,0,3
+Sanket Suresh Mangsulikar,Sanket Suresh Mangsulikar,QA Chapter,May,2021,1,39,29,3,67,105,337,77,39,29,5
+Sanket Suresh Mangsulikar,Sanket Suresh Mangsulikar,QA Chapter,April,2021,0,333,188,13,67,86,209,73,0,0,4
+Sanket Suresh Mangsulikar,Sanket Suresh Mangsulikar,QA Chapter,February,2021,0,76,28,3,67,33,114,73,0,0,2
+Sanket Suresh Mangsulikar,Sanket Suresh Mangsulikar,QA Chapter,January,2021,0,122,30,0,67,88,221,73,0,0,1
+Hitesh Patadia,Hitesh Patadia,Squad III,March,2021,0,4667,667,68,78,182,212,85,0,0,3
+Hitesh Patadia,Hitesh Patadia,Squad III,May,2021,1,1042,344,20,67,151,326,85,1042,344,5
+Hitesh Patadia,Hitesh Patadia,Squad III,January,2021,0,6326,909,61,78,111,196,85,0,0,1
+Hitesh Patadia,Hitesh Patadia,Squad III,February,2021,0,2886,457,67,78,156,280,85,0,0,2
+Hitesh Patadia,Hitesh Patadia,Squad III,April,2021,0,2708,688,72,78,145,491,85,0,0,4
+Milan Chavda,Milan Chavda,Maintenance,May,2021,1,407,167,9,56,146,246,67,407,167,5
+Milan Chavda,Milan Chavda,Maintenance,March,2021,0,1444,583,37,67,96,126,67,0,0,3
+Milan Chavda,Milan Chavda,Maintenance,February,2021,0,1061,199,14,67,81,127,67,0,0,2
+Milan Chavda,Milan Chavda,Maintenance,January,2021,0,1993,299,21,67,62,187,67,0,0,1
+Milan Chavda,Milan Chavda,Maintenance,April,2021,0,815,361,29,67,158,196,67,0,0,4
+Kanu Dhakhada,Kanu Dhakhada,JKC,April,2021,0,1500,313,25,56,0,125,67,0,0,4
+Kanu Dhakhada,Kanu Dhakhada,JKC,March,2021,0,1458,406,39,56,0,0,67,0,0,3
+Kanu Dhakhada,Kanu Dhakhada,JKC,January,2021,0,471,109,22,56,0,104,67,0,0,1
+Kanu Dhakhada,Kanu Dhakhada,JKC,May,2021,1,772,263,31,56,146,109,67,772,263,5
+Kanu Dhakhada,Kanu Dhakhada,JKC,February,2021,0,491,184,27,56,0,117,67,0,0,2
+Vineet Jangir,Vineet Jangir,Dev Support,January,2021,0,316,79,14,78,114,209,50,0,0,1
+Vineet Jangir,Vineet Jangir,Dev Support,February,2021,0,227,57,4,78,78,113,50,0,0,2
+Vineet Jangir,Vineet Jangir,Dev Support,April,2021,0,235,324,14,78,118,142,50,0,0,4
+Vineet Jangir,Vineet Jangir,Dev Support,May,2021,1,456,211,15,67,64,154,50,456,211,5
+Vineet Jangir,Vineet Jangir,Dev Support,March,2021,0,392,235,17,78,109,324,50,0,0,3
+Prachi Phursutkar,Prachi Phursutkar,QA Chapter,March,2021,0,0,0,0,56,79,265,58,0,0,3
+Prachi Phursutkar,Prachi Phursutkar,QA Chapter,January,2021,0,0,0,0,56,88,176,58,0,0,1
+Prachi Phursutkar,Prachi Phursutkar,QA Chapter,February,2021,0,0,0,0,56,33,356,58,0,0,2
+Prachi Phursutkar,Prachi Phursutkar,QA Chapter,April,2021,0,78,59,3,56,86,302,58,0,0,4
+Prachi Phursutkar,Prachi Phursutkar,QA Chapter,May,2021,1,0,0,0,44,105,539,58,0,0,5
+Taco Droogers,Taco Droogers,Dev Support,May,2021,1,421,0,0,56,64,112,40,421,0,5
+Taco Droogers,Taco Droogers,Dev Support,January,2021,0,351,105,32,67,114,269,40,0,0,1
+Taco Droogers,Taco Droogers,Dev Support,February,2021,0,632,184,19,67,78,241,40,0,0,2
+Taco Droogers,Taco Droogers,Dev Support,March,2021,0,1098,471,39,67,109,227,40,0,0,3
+Taco Droogers,Taco Droogers,Dev Support,April,2021,0,627,118,4,67,118,218,40,0,0,4
+Rohit Vij,Rohit Vij,Squad III,January,2021,0,4275,1250,89,67,111,358,48,0,0,1
+Rohit Vij,Rohit Vij,Squad III,May,2021,1,37,417,34,56,151,210,48,37,417,5
+Rohit Vij,Rohit Vij,Squad III,April,2021,0,2148,1278,29,67,145,380,48,0,0,4
+Rohit Vij,Rohit Vij,Squad III,March,2021,0,4235,1382,97,67,182,246,48,0,0,3
+Rohit Vij,Rohit Vij,Squad III,February,2021,0,2576,795,61,67,156,255,48,0,0,2
+Abbasali Nathani,Abbasali Nathani,Squad III,February,2021,0,2355,353,27,67,156,78,40,0,0,2
+Abbasali Nathani,Abbasali Nathani,Squad III,April,2021,0,1259,611,26,67,145,162,40,0,0,4
+Abbasali Nathani,Abbasali Nathani,Squad III,May,2021,1,1404,526,28,67,151,135,40,1404,526,5
+Abbasali Nathani,Abbasali Nathani,Squad III,March,2021,0,4314,941,53,67,182,215,40,0,0,3
+Abbasali Nathani,Abbasali Nathani,Squad III,January,2021,0,2917,568,30,44,111,65,40,0,0,1
+Sumeet kallappa Hindinkeri,Sumeet kallappa Hindinkeri,Maintenance,April,2021,0,208,156,2,67,158,215,40,0,0,4
+Sumeet kallappa Hindinkeri,Sumeet kallappa Hindinkeri,Maintenance,May,2021,1,0,79,11,56,146,149,40,0,79,5
+Sumeet kallappa Hindinkeri,Sumeet kallappa Hindinkeri,Maintenance,January,2021,0,38,142,5,44,125,240,40,0,0,1
+Sumeet kallappa Hindinkeri,Sumeet kallappa Hindinkeri,Maintenance,February,2021,0,0,0,0,67,0,0,40,0,0,2
+Sumeet kallappa Hindinkeri,Sumeet kallappa Hindinkeri,Maintenance,March,2021,0,0,94,0,67,199,181,40,0,0,3
+Niek van der Plas,Niek van der Plas,Squad III,February,2021,0,0,0,0,44,0,0,33,0,0,2
+Niek van der Plas,Niek van der Plas,Squad III,May,2021,1,0,0,0,33,0,0,33,0,0,5
+Niek van der Plas,Niek van der Plas,Squad III,April,2021,0,0,0,0,44,0,0,33,0,0,4
+Niek van der Plas,Niek van der Plas,Squad III,March,2021,0,0,0,0,44,0,0,33,0,0,3
+Niek van der Plas,Niek van der Plas,Squad III,January,2021,0,0,0,0,44,0,0,33,0,0,1
+Uzer Pathan,Uzer Pathan,Squad III,January,2021,0,1818,1222,68,67,111,167,58,0,0,1
+Uzer Pathan,Uzer Pathan,Squad III,March,2021,0,2118,1176,65,67,182,242,58,0,0,3
+Uzer Pathan,Uzer Pathan,Squad III,May,2021,1,1375,563,23,56,151,323,58,1375,563,5
+Uzer Pathan,Uzer Pathan,Squad III,April,2021,0,4267,700,12,67,145,513,58,0,0,4
+Uzer Pathan,Uzer Pathan,Squad III,February,2021,0,1174,824,47,67,156,277,58,0,0,2
+Ajinkya Bhakare,Ajinkya Bhakare,QA Chapter,May,2021,1,0,0,0,33,105,50,0,0,0,5
+Dipali Pande,Dipali Pande,Maintenance,January,2021,0,171,160,14,67,125,295,63,0,0,1
+Dipali Pande,Dipali Pande,Maintenance,February,2021,0,0,0,0,67,0,0,63,0,0,2
+Dipali Pande,Dipali Pande,Maintenance,May,2021,1,111,194,16,56,146,296,63,111,194,5
+Dipali Pande,Dipali Pande,Maintenance,March,2021,0,182,182,7,67,199,423,63,0,0,3
+Dipali Pande,Dipali Pande,Maintenance,April,2021,0,39,147,6,67,158,243,63,0,0,4
+Prashant Singh,Prashant Singh,Squad II,May,2021,1,1458,500,52,56,94,197,71,1458,500,5
+Prashant Singh,Prashant Singh,Squad II,March,2021,0,3056,667,38,67,63,290,71,0,0,3
+Prashant Singh,Prashant Singh,Squad II,April,2021,0,2630,722,44,67,95,250,71,0,0,4
+Prashant Singh,Prashant Singh,Squad II,February,2021,0,1068,256,16,67,56,303,71,0,0,2
+Prashant Singh,Prashant Singh,Squad II,January,2021,0,1608,471,41,44,47,267,71,0,0,1
+Swati Bhagwat,Swati Bhagwat,QA Chapter,May,2021,1,35,158,8,78,105,169,63,35,158,5
+Swati Bhagwat,Swati Bhagwat,QA Chapter,February,2021,0,70,53,5,78,33,114,50,0,0,2
+Swati Bhagwat,Swati Bhagwat,QA Chapter,April,2021,0,0,94,6,78,86,132,50,0,0,4
+Swati Bhagwat,Swati Bhagwat,QA Chapter,March,2021,0,125,63,5,78,79,325,50,0,0,3
+Swati Bhagwat,Swati Bhagwat,QA Chapter,January,2021,0,108,40,0,78,88,40,50,0,0,1
+Ashish Tank,Ashish Tank,Dev Support,May,2021,1,1020,235,11,78,64,323,81,1020,235,5
+Ashish Tank,Ashish Tank,Dev Support,January,2021,0,652,82,5,78,114,246,81,0,0,1
+Ashish Tank,Ashish Tank,Dev Support,April,2021,0,1600,300,9,78,118,419,81,0,0,4
+Ashish Tank,Ashish Tank,Dev Support,March,2021,0,2235,176,10,78,109,403,81,0,0,3
+Ashish Tank,Ashish Tank,Dev Support,February,2021,0,720,28,2,78,78,504,81,0,0,2
+Sanjog Saraf,Sanjog Saraf,Maintenance,May,2021,1,0,0,0,33,146,0,0,0,0,5
+Arindam Datta,Arindam Datta,Squad II,January,2021,0,2790,353,84,78,47,323,90,0,0,1
+Arindam Datta,Arindam Datta,Squad II,March,2021,0,4444,667,110,78,63,428,90,0,0,3
+Arindam Datta,Arindam Datta,Squad II,April,2021,0,4615,1462,113,78,95,421,90,0,0,4
+Arindam Datta,Arindam Datta,Squad II,May,2021,1,1067,667,57,78,94,227,90,1067,667,5
+Arindam Datta,Arindam Datta,Squad II,February,2021,0,1333,267,59,78,56,319,90,0,0,2
+Ankit Ajwani,Ankit Ajwani,QA Chapter,March,2021,0,39,29,5,67,79,312,63,0,0,3
+Ankit Ajwani,Ankit Ajwani,QA Chapter,April,2021,0,39,0,0,67,86,168,63,0,0,4
+Ankit Ajwani,Ankit Ajwani,QA Chapter,May,2021,1,0,0,0,67,105,305,63,0,0,5
+Ankit Ajwani,Ankit Ajwani,QA Chapter,February,2021,0,118,59,7,67,33,327,63,0,0,2
+Ankit Ajwani,Ankit Ajwani,QA Chapter,January,2021,0,114,28,0,67,88,341,63,0,0,1
+Himanshukumar Pandey,Himanshukumar Pandey,Squad III,March,2021,0,4238,1107,41,78,182,205,77,0,0,3
+Himanshukumar Pandey,Himanshukumar Pandey,Squad III,April,2021,0,4000,833,36,78,145,1046,77,0,0,4
+Himanshukumar Pandey,Himanshukumar Pandey,Squad III,February,2021,0,2356,533,22,78,156,183,77,0,0,2
+Himanshukumar Pandey,Himanshukumar Pandey,Squad III,May,2021,1,2593,306,11,67,151,278,77,2593,306,5
+Himanshukumar Pandey,Himanshukumar Pandey,Squad III,January,2021,0,2536,462,21,78,111,222,77,0,0,1
+Bas Groenewoud,Bas Groenewoud,Squad III,January,2021,0,1647,559,41,78,111,321,60,0,0,1
+Bas Groenewoud,Bas Groenewoud,Squad III,April,2021,0,1481,1333,65,78,145,528,60,0,0,4
+Bas Groenewoud,Bas Groenewoud,Squad III,March,2021,0,2769,1192,56,78,182,294,60,0,0,3
+Bas Groenewoud,Bas Groenewoud,Squad III,May,2021,1,2256,846,46,78,151,430,60,2256,846,5
+Bas Groenewoud,Bas Groenewoud,Squad III,February,2021,0,1435,486,31,78,156,301,60,0,0,2
+Gaurang Agrawal,Gaurang Agrawal,Maintenance,April,2021,0,407,444,83,67,158,279,60,0,0,4
+Gaurang Agrawal,Gaurang Agrawal,Maintenance,January,2021,0,0,227,32,67,125,274,60,0,0,1
+Gaurang Agrawal,Gaurang Agrawal,Maintenance,February,2021,0,0,0,0,67,0,0,60,0,0,2
+Gaurang Agrawal,Gaurang Agrawal,Maintenance,March,2021,0,370,583,90,67,199,347,60,0,0,3
+Gaurang Agrawal,Gaurang Agrawal,Maintenance,May,2021,1,74,306,32,56,146,397,60,74,306,5
+Ajinkya Godbole,Ajinkya Godbole,Maintenance,January,2021,0,265,114,29,67,125,310,48,0,0,1
+Ajinkya Godbole,Ajinkya Godbole,Maintenance,March,2021,0,556,111,47,67,199,269,48,0,0,3
+Ajinkya Godbole,Ajinkya Godbole,Maintenance,February,2021,0,0,0,0,67,0,0,48,0,0,2
+Ajinkya Godbole,Ajinkya Godbole,Maintenance,May,2021,1,456,79,21,56,146,176,48,456,79,5
+Ajinkya Godbole,Ajinkya Godbole,Maintenance,April,2021,0,1037,306,30,67,158,298,48,0,0,4
