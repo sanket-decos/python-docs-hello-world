@@ -4,6 +4,7 @@ from flask_cors import CORS
 import pandas as pd
 import ast
 import datetime
+from calendar import month_name
 
 app = Flask(__name__)
 CORS(app)
@@ -427,13 +428,26 @@ class ServicesEmployees(Resource):
         return {'data': data}, 200  # return data and 200 OK
         
                     
-class Development(Resource):
+class DevelopmentProcessAdherenceScore(Resource):
     def get(self):
 
-        df = pd.read_csv('servicesTeams.csv')
+        df = pd.read_csv('development.csv')  # read local CSV
 
-        
-        data = df.to_dict()  
+        dftemp = df[['Employee', 'Team', 'Month', 'MonthNumber', 'Process Adherence Score']].sort_values(['MonthNumber'], ascending=[True])
+        pivoted = dftemp.pivot(index=['Employee', 'Team'], columns= 'Month', values='Process Adherence Score')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+
+        def Diff(li1, li2):
+            return list(set(li1) - set(li2)) + list(set(li2) - set(li1))
+        month_lookup = list(month_name)
+        col = flattened.columns.to_list()
+        coldiff = Diff(col, ['Employee', 'Team'])
+        colsort = sorted(coldiff, key=month_lookup.index)
+        colsort = ['Employee', 'Team'] + colsort
+        flattened = flattened[colsort]
+
+        data = dict(flattened.set_index('Team').groupby(level = 0).\
+            apply(lambda x : x.to_dict(orient= 'records')))
 
         return {'data': data}, 200  # return data and 200 OK
 
@@ -452,7 +466,7 @@ api.add_resource(CSSLAClosedTickets, '/CSSLAClosedTickets')  # add endpoints
 api.add_resource(ServicesTeams, '/ServicesTeams')  # add endpoints
 api.add_resource(ServicesEmployees, '/ServicesEmployees')  # add endpoints
 
-api.add_resource(Development, '/Development')  # add endpoints
+api.add_resource(DevelopmentProcessAdherenceScore, '/DevelopmentProcessAdherenceScore')  # add endpoints
 
 if __name__ == '__main__':
     app.run()  # run our Flask app
