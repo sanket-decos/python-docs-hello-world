@@ -446,8 +446,9 @@ class DevelopmentProcessAdherenceScore(Resource):
         colsort = ['Employee', 'Team'] + colsort
         flattened = flattened[colsort]
 
-        data = dict(flattened.set_index('Team').groupby(level = 0).\
-            apply(lambda x : x.to_dict(orient= 'records')))
+        #data = dict(flattened.set_index('Team').groupby(level = 0).\
+        #    apply(lambda x : x.to_dict(orient= 'records')))
+        data = flattened.to_dict(orient= 'records')
 
         return {'data': data}, 200  # return data and 200 OK
         
@@ -470,8 +471,9 @@ class DevelopmentTechnicalScore(Resource):
         colsort = ['Employee', 'Team'] + colsort
         flattened = flattened[colsort]
 
-        data = dict(flattened.set_index('Team').groupby(level = 0).\
-            apply(lambda x : x.to_dict(orient= 'records')))
+        #data = dict(flattened.set_index('Team').groupby(level = 0).\
+        #    apply(lambda x : x.to_dict(orient= 'records')))
+        data = flattened.to_dict(orient= 'records')
 
         return {'data': data}, 200  # return data and 200 OK
         
@@ -494,8 +496,9 @@ class DevelopmentTotalCommits(Resource):
         colsort = ['Employee', 'Team'] + colsort
         flattened = flattened[colsort]
 
-        data = dict(flattened.set_index('Team').groupby(level = 0).\
-            apply(lambda x : x.to_dict(orient= 'records')))
+        #data = dict(flattened.set_index('Team').groupby(level = 0).\
+        #    apply(lambda x : x.to_dict(orient= 'records')))
+        data = flattened.to_dict(orient= 'records')
 
         return {'data': data}, 200  # return data and 200 OK
         
@@ -518,8 +521,9 @@ class DevelopmentProductivityScore(Resource):
         colsort = ['Employee', 'Team'] + colsort
         flattened = flattened[colsort]
 
-        data = dict(flattened.set_index('Team').groupby(level = 0).\
-            apply(lambda x : x.to_dict(orient= 'records')))
+        #data = dict(flattened.set_index('Team').groupby(level = 0).\
+        #    apply(lambda x : x.to_dict(orient= 'records')))
+        data = flattened.to_dict(orient= 'records')
 
         return {'data': data}, 200  # return data and 200 OK
        
