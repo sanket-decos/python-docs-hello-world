@@ -450,7 +450,101 @@ class DevelopmentProcessAdherenceScore(Resource):
             apply(lambda x : x.to_dict(orient= 'records')))
 
         return {'data': data}, 200  # return data and 200 OK
+        
+                    
+class DevelopmentTechnicalScore(Resource):
+    def get(self):
 
+        df = pd.read_csv('development.csv')  # read local CSV
+
+        dftemp = df[['Employee', 'Team', 'Month', 'MonthNumber', 'Technical Score']].sort_values(['MonthNumber'], ascending=[True])
+        pivoted = dftemp.pivot(index=['Employee', 'Team'], columns= 'Month', values='Technical Score')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+
+        def Diff(li1, li2):
+            return list(set(li1) - set(li2)) + list(set(li2) - set(li1))
+        month_lookup = list(month_name)
+        col = flattened.columns.to_list()
+        coldiff = Diff(col, ['Employee', 'Team'])
+        colsort = sorted(coldiff, key=month_lookup.index)
+        colsort = ['Employee', 'Team'] + colsort
+        flattened = flattened[colsort]
+
+        data = dict(flattened.set_index('Team').groupby(level = 0).\
+            apply(lambda x : x.to_dict(orient= 'records')))
+
+        return {'data': data}, 200  # return data and 200 OK
+        
+                    
+class DevelopmentTotalCommits(Resource):
+    def get(self):
+
+        df = pd.read_csv('development.csv')  # read local CSV
+
+        dftemp = df[['Employee', 'Team', 'Month', 'MonthNumber', 'Total Commits']].sort_values(['MonthNumber'], ascending=[True])
+        pivoted = dftemp.pivot(index=['Employee', 'Team'], columns= 'Month', values='Total Commits')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+
+        def Diff(li1, li2):
+            return list(set(li1) - set(li2)) + list(set(li2) - set(li1))
+        month_lookup = list(month_name)
+        col = flattened.columns.to_list()
+        coldiff = Diff(col, ['Employee', 'Team'])
+        colsort = sorted(coldiff, key=month_lookup.index)
+        colsort = ['Employee', 'Team'] + colsort
+        flattened = flattened[colsort]
+
+        data = dict(flattened.set_index('Team').groupby(level = 0).\
+            apply(lambda x : x.to_dict(orient= 'records')))
+
+        return {'data': data}, 200  # return data and 200 OK
+        
+                    
+class DevelopmentProductivityScore(Resource):
+    def get(self):
+
+        df = pd.read_csv('development.csv')  # read local CSV
+
+        dftemp = df[['Employee', 'Team', 'Month', 'MonthNumber', 'Productivity Score']].sort_values(['MonthNumber'], ascending=[True])
+        pivoted = dftemp.pivot(index=['Employee', 'Team'], columns= 'Month', values='Productivity Score')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+
+        def Diff(li1, li2):
+            return list(set(li1) - set(li2)) + list(set(li2) - set(li1))
+        month_lookup = list(month_name)
+        col = flattened.columns.to_list()
+        coldiff = Diff(col, ['Employee', 'Team'])
+        colsort = sorted(coldiff, key=month_lookup.index)
+        colsort = ['Employee', 'Team'] + colsort
+        flattened = flattened[colsort]
+
+        data = dict(flattened.set_index('Team').groupby(level = 0).\
+            apply(lambda x : x.to_dict(orient= 'records')))
+
+        return {'data': data}, 200  # return data and 200 OK
+       
+                    
+class DevelopmentAverageVelocity(Resource):
+    def get(self):
+
+        df = pd.read_csv('development.csv')  # read local CSV
+
+        df = df[['Team', 'Month', 'Average Velocity']].groupby(['Team', 'Month'])['Average Velocity'].mean().reset_index(name='Average Velocity').round({"Average Velocity":0})
+        pivoted = df.pivot(index=['Team'], columns= 'Month', values='Average Velocity')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+
+        def Diff(li1, li2):
+            return list(set(li1) - set(li2)) + list(set(li2) - set(li1))
+        month_lookup = list(month_name)
+        col = flattened.columns.to_list()
+        coldiff = Diff(col, ['Team'])
+        colsort = sorted(coldiff, key=month_lookup.index)
+        colsort = ['Team'] + colsort
+        flattened = flattened[colsort]
+
+        data = flattened.to_dict(orient= 'records')
+
+        return {'data': data}, 200  # return data and 200 OK
 
 
 api.add_resource(CustomerSatisfactionTeams, '/CustomerSatisfactionTeams')  # add endpoints
@@ -467,6 +561,10 @@ api.add_resource(ServicesTeams, '/ServicesTeams')  # add endpoints
 api.add_resource(ServicesEmployees, '/ServicesEmployees')  # add endpoints
 
 api.add_resource(DevelopmentProcessAdherenceScore, '/DevelopmentProcessAdherenceScore')  # add endpoints
+api.add_resource(DevelopmentTechnicalScore, '/DevelopmentTechnicalScore')  # add endpoints
+api.add_resource(DevelopmentTotalCommits, '/DevelopmentTotalCommits')  # add endpoints
+api.add_resource(DevelopmentProductivityScore, '/DevelopmentProductivityScore')  # add endpoints
+api.add_resource(DevelopmentAverageVelocity, '/DevelopmentAverageVelocity')  # add endpoints
 
 if __name__ == '__main__':
     app.run()  # run our Flask app
