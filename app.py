@@ -393,37 +393,37 @@ class ServicesEmployees(Resource):
     def get(self):
 
         df = pd.read_csv('servicesEmployees.csv')  # read local CSV
+        df.sort_values(['Employee', 'Month number'], ascending = [True, True], inplace = True)        
         data = {}
 
-        for column in ['Current Target', 'Current Result', 'DifferenceYTD']:
-            dataTemp = df.groupby(['Employee'])[column].sum().reset_index()
-            dataTemp['drilldown'] = dataTemp['Employee'] + '- ' + str(column)
-            dataTemp.columns = ['name', 'y', 'drilldown']
-            data['series'+ str(column)] = dataTemp.to_json(orient ='records')    
+        dfTarget = df[df['Current Month'].isin([1])][['Employee', 'Target']]
+        dfTarget['drilldown'] = dfTarget['Employee'] + '- Target'
+        data['seriesTarget'] = dfTarget.rename(columns={"Employee": "name", "Target": "y"}).to_dict(orient= 'records')
 
-        dfmain = df.groupby(['Employee', 'Month', 'Month number'])["Target", "Result", "DifferenceYTD"].sum().reset_index()
-        series = []
+        dfResult = df[df['Current Month'].isin([1])][['Employee', 'Result']]
+        dfResult['drilldown'] = dfResult['Employee'] + '- Result'
+        data['seriesResult'] = dfResult.rename(columns={"Employee": "name", "Result": "y"}).to_dict(orient= 'records')
 
-        for column in ['Target', 'Result']:
-            for Employee in dfmain['Employee']:
-                dftemp = dfmain[dfmain.Employee.isin([Employee])][['Month', column, 'Month number']]
-                dftemp = dftemp.sort_values(['Month number'], ascending=[True])
-                temp = {}
-                temp['id'] = Employee + '- Current ' + str(column)
-                temp['data'] = dftemp[['Month', column]].to_json(orient ='values')
-                temp['data'] = ast.literal_eval(temp['data'])
-                series.append(temp)
+        dfDifferenceYTD = df[['Employee', 'DifferenceYTD']].groupby(['Employee'])['DifferenceYTD'].sum().reset_index().round({"DifferenceYTD":0})
+        dfDifferenceYTD['drilldown'] = dfDifferenceYTD['Employee'] + '- DifferenceYTD'
+        data['seriesDifferenceYTD'] = dfDifferenceYTD.rename(columns={"Employee": "name", "DifferenceYTD": "y"}).to_dict(orient= 'records')
 
-        for Employee in dfmain['Employee']:
-            dftemp = dfmain[dfmain.Employee.isin([Employee])][['Month', 'DifferenceYTD', 'Month number']]
-            dftemp = dftemp.sort_values(['Month number'], ascending=[True])
-            temp = {}
-            temp['id'] = Employee + '- DifferenceYTD'
-            temp['data'] = dftemp[['Month', 'DifferenceYTD']].to_json(orient ='values')
-            temp['data'] = ast.literal_eval(temp['data'])
-            series.append(temp)
+        df['drillTarget'] = df['Employee'] + '- Target'
+        dfDrillTarget = df[['drillTarget', 'Month', 'Target']]
+        dicDrillTarget = dict(dfDrillTarget.set_index('drillTarget').groupby(level = 0).apply(lambda x : x.to_dict(orient= 'split')))
+        drillTargetlist = list(map(lambda a: {'id':a['index'][0], 'name': 'Target', 'data': a['data']}, list(dicDrillTarget.values())))
 
-        data['seriesDrill'] = series
+        df['drillResult'] = df['Employee'] + '- Result'
+        dfDrillResult = df[['drillResult', 'Month', 'Result']]
+        dicDrillResult = dict(dfDrillResult.set_index('drillResult').groupby(level = 0).apply(lambda x : x.to_dict(orient= 'split')))
+        drillResultlist = list(map(lambda a: {'id':a['index'][0], 'name': 'Result', 'data': a['data']}, list(dicDrillResult.values())))
+
+        df['drillDifferenceYTD'] = df['Employee'] + '- DifferenceYTD'
+        dfDrillDifferenceYTD = df[['drillDifferenceYTD', 'Month', 'DifferenceYTD']]
+        dicDrillDifferenceYTD = dict(dfDrillDifferenceYTD.set_index('drillDifferenceYTD').groupby(level = 0).apply(lambda x : x.to_dict(orient= 'split')))
+        drillDifferenceYTDlist = list(map(lambda a: {'id':a['index'][0], 'name': 'Monthly Difference', 'data': a['data']}, list(dicDrillDifferenceYTD.values())))
+
+        data['seriesDrill'] = drillTargetlist + drillResultlist + drillDifferenceYTDlist
 
         return {'data': data}, 200  # return data and 200 OK
         
