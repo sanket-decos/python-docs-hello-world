@@ -296,7 +296,25 @@ class CSTimeAnalysis(Resource):
         data['TicketsByWeek'] = dataTicketsByWeek
 
         return {'data': data}, 200  # return data and 200 OK
+
+
+class CSTimeAnalysisTemp(Resource):
+    def get(self):
+
+        df = pd.read_csv('customerSupportSummaryTemp.csv')  # read local CSV
+        data = {}
+
+        df['recordDate'] = pd.to_datetime(df['recordDate'].str.slice(0,10), format='%Y-%m-%d', errors='ignore') 
+        df = df.sort_values(['recordDate'], ascending=[True])
+
+        df['UnixDate'] = (pd.DatetimeIndex(df['recordDate']).astype(int) // 10**9) * 1000
         
+        data['TimeNew'] = df[['UnixDate', 'New']].to_json(orient ='values')
+        
+        data['TimeClosed'] = df[['UnixDate', 'Closed']].to_json(orient ='values')
+
+        return {'data': data}, 200  # return data and 200 OK
+          
                     
 class CSSLAOpenTickets(Resource):
     def get(self):
@@ -590,6 +608,8 @@ api.add_resource(CSOpenIncidents, '/CSOpenIncidents')  # add endpoints
 api.add_resource(CSAllOpenTickets, '/CSAllOpenTickets')  # add endpoints
 api.add_resource(CSClosedTickets, '/CSClosedTickets')  # add endpoints
 api.add_resource(CSTimeAnalysis, '/CSTimeAnalysis')  # add endpoints
+api.add_resource(CSTimeAnalysisTemp, '/CSTimeAnalysisTemp')  # add endpoints
+
 api.add_resource(CSSLAOpenTickets, '/CSSLAOpenTickets')  # add endpoints
 api.add_resource(CSSLAClosedTickets, '/CSSLAClosedTickets')  # add endpoints
 
