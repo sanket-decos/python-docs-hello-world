@@ -549,6 +549,35 @@ class DevelopmentAverageVelocity(Resource):
         data = flattened.to_dict(orient= 'records')
 
         return {'data': data}, 200  # return data and 200 OK
+       
+                    
+class DevelopmentCodeReviews(Resource):
+    def get(self):
+
+        df = pd.read_csv('development.csv')  # read local CSV
+        data = {}
+
+        dfCR = df[df.recentMonth.isin([1])][['Team', 'Employee', 'Code Review Score']]
+        dfCR['drilldown'] = dfCR['Employee'] + '- CR'
+        data['seriesCR'] = dfCR.rename(columns={"Employee": "name", "Code Review Score": "y"}).to_dict(orient= 'records')
+
+        dfCRR = df[df.recentMonth.isin([1])][['Team', 'Employee', 'Code Review Received Score']]
+        dfCRR['drilldown'] = dfCRR['Employee'] + '- CRR'
+        data['seriesCRR'] = dfCRR.rename(columns={"Employee": "name", "Code Review Received Score": "y"}).to_dict(orient= 'records')
+
+        df['drillCR'] = df['Employee'] + '- CR'
+        dfdrillCR = df[['drillCR', 'Month', 'Code Review Score']]
+        dicDrillCR = dict(dfdrillCR.set_index('drillCR').groupby(level = 0).apply(lambda x : x.to_dict(orient= 'split')))
+        drillCRlist = list(map(lambda a: {'id':a['index'][0], 'data': a['data']}, list(dicDrillCR.values())))
+
+        df['drillCRR'] = df['Employee'] + '- CRR'
+        dfdrillCRR = df[['drillCRR', 'Month', 'Code Review Received Score']]
+        dicDrillCRR = dict(dfdrillCRR.set_index('drillCRR').groupby(level = 0).apply(lambda x : x.to_dict(orient= 'split')))
+        drillCRRlist = list(map(lambda a: {'id':a['index'][0], 'data': a['data']}, list(dicDrillCRR.values())))
+
+        data['seriesDrill'] = drillCRlist + drillCRRlist
+
+        return {'data': data}, 200  # return data and 200 OK
 
 
 api.add_resource(CustomerSatisfactionTeams, '/CustomerSatisfactionTeams')  # add endpoints
@@ -569,6 +598,7 @@ api.add_resource(DevelopmentTechnicalScore, '/DevelopmentTechnicalScore')  # add
 api.add_resource(DevelopmentTotalCommits, '/DevelopmentTotalCommits')  # add endpoints
 api.add_resource(DevelopmentProductivityScore, '/DevelopmentProductivityScore')  # add endpoints
 api.add_resource(DevelopmentAverageVelocity, '/DevelopmentAverageVelocity')  # add endpoints
+api.add_resource(DevelopmentCodeReviews, '/DevelopmentCodeReviews')  # add endpoints
 
 if __name__ == '__main__':
     app.run()  # run our Flask app
