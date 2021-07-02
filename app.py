@@ -555,6 +555,9 @@ class DevelopmentCodeReviews(Resource):
     def get(self):
 
         df = pd.read_csv('development.csv')  # read local CSV
+        month_lookup = list(month_name)
+        df['Month_Rank'] = df['Month'].map(month_lookup.index)
+        df.sort_values(['Team', 'Employee', 'Month_Rank'], ascending = [True, True, True], inplace = True)        
         data = {}
 
         dfCR = df[df.recentMonth.isin([1])][['Team', 'Employee', 'Code Review Score']]
@@ -568,12 +571,12 @@ class DevelopmentCodeReviews(Resource):
         df['drillCR'] = df['Employee'] + '- CR'
         dfdrillCR = df[['drillCR', 'Month', 'Code Review Score']]
         dicDrillCR = dict(dfdrillCR.set_index('drillCR').groupby(level = 0).apply(lambda x : x.to_dict(orient= 'split')))
-        drillCRlist = list(map(lambda a: {'id':a['index'][0], 'data': a['data']}, list(dicDrillCR.values())))
+        drillCRlist = list(map(lambda a: {'id':a['index'][0], 'name': 'Code Review Score', 'data': a['data']}, list(dicDrillCR.values())))
 
         df['drillCRR'] = df['Employee'] + '- CRR'
         dfdrillCRR = df[['drillCRR', 'Month', 'Code Review Received Score']]
         dicDrillCRR = dict(dfdrillCRR.set_index('drillCRR').groupby(level = 0).apply(lambda x : x.to_dict(orient= 'split')))
-        drillCRRlist = list(map(lambda a: {'id':a['index'][0], 'data': a['data']}, list(dicDrillCRR.values())))
+        drillCRRlist = list(map(lambda a: {'id':a['index'][0], 'name': 'Code Review Received Score', 'data': a['data']}, list(dicDrillCRR.values())))
 
         data['seriesDrill'] = drillCRlist + drillCRRlist
 
