@@ -173,7 +173,11 @@ class CSAllOpenTickets(Resource):
         #TicketsByCompanyname
         dataTicketsByCompanyname = df.groupby(['companyName']).size().reset_index(name='count')
         data['TicketsByCompanyname'] = dataTicketsByCompanyname.to_dict()  # convert dataframe to dict
-
+        
+        #TicketsAll
+        df= df.fillna('blank')
+        data['TicketsAll'] = df[['agent', 'companyName', 'message', 'type', 'priority', 'version', 'environment']].to_dict(orient= 'records')  # convert dataframe to dict
+        
         return {'data': data}, 200  # return data and 200 OK
 
 
