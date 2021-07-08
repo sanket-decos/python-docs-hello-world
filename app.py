@@ -30,6 +30,7 @@ class CustomerSatisfactionEmployees(Resource):
         data = data.to_dict()  # convert dataframe to dict
         return {'data': data}, 200  # return data and 200 OK
 
+
                     
 class CSOpenIncidents(Resource):
     def get(self):
@@ -104,6 +105,9 @@ class CSOpenIncidents(Resource):
         dataTicketsByGroup = dfTicketsByGroup[['groupNameClubbed_cat', 'count']].sort_values('groupNameClubbed_cat')
         json_valuesTicketsByGroup = dataTicketsByGroup.to_json(orient ='values')
         data['TicketsByGroup'] = json_valuesTicketsByGroup
+        
+        #Dropdown
+        data['Counts'] = {'Total tickets': df.shape[0]}
 
         
         return {'data': data}, 200  # return data and 200 OK
@@ -177,6 +181,17 @@ class CSAllOpenTickets(Resource):
         #TicketsAll
         df= df.fillna('blank')
         data['TicketsAll'] = df[['agent', 'companyName', 'message', 'type', 'priority', 'version', 'environment']].to_dict(orient= 'records')  # convert dataframe to dict
+        
+        #Dropdown
+        DropdownList = {}
+        DropdownList['agent'] = df['agent'].unique().tolist()
+        DropdownList['type'] = df['type'].unique().tolist()
+        DropdownList['environment'] = df['environment'].unique().tolist()
+        DropdownList['version'] = df['version'].unique().tolist()
+        data['Dropdown'] = DropdownList
+        
+        #Dropdown
+        data['Counts'] = {'Total tickets': df.shape[0]}
         
         return {'data': data}, 200  # return data and 200 OK
 
@@ -252,6 +267,30 @@ class CSClosedTickets(Resource):
         dataTicketsByCompanyname = df.groupby(['companyName']).size().reset_index(name='count')
         data['TicketsByCompanyname'] = dataTicketsByCompanyname.to_dict()  # convert dataframe to dict
         
+        #TicketsAll
+        df= df.fillna('blank')
+        #Sort
+        df['groupNameClubbed_cat'] = pd.Categorical(
+            df['groupNameClubbed'], 
+            categories=['Intake','Support 1e lijn','Support 2e lijn','Technisch consultants and Functioneel consultants','Development','Others'], 
+            ordered=True
+        )
+        df = df.sort_values('groupNameClubbed_cat')
+        data['TicketsAll'] = df[['agent', 'companyName', 'solutionStatus', 'message', 'groupNameClubbed_cat', 'type', 'priority', 'version', 'environment']].to_dict(orient= 'records')  # convert dataframe to dict
+        
+        #Dropdown
+        DropdownList = {}
+        DropdownList['message'] = df['message'].unique().tolist()
+        DropdownList['type'] = df['type'].unique().tolist()
+        DropdownList['environment'] = df['environment'].unique().tolist()
+        DropdownList['version'] = df['version'].unique().tolist()
+        data['Dropdown'] = DropdownList
+        
+        #Dropdown
+        count1 = df[df.message.isin(['Feedback', 'Incident / storing', 'Vraag'])].shape[0]
+        count2 = df[df.message.isin(['Incident / storing'])].shape[0]
+        data['Counts'] = {'Total tickets including feedback & questions': count1, 'Total tickets except feedback & questions': count2}
+
         return {'data': data}, 200  # return data and 200 OK
 
 
@@ -354,6 +393,16 @@ class CSSLAOpenTickets(Resource):
         #Group by
         datagroup3 = df.groupby(['status']).size().reset_index(name='count')
         data['PieStatus'] = datagroup3.to_json(orient ='values')
+
+        #TicketsAll
+        df= df.fillna('blank')
+        data['TicketsAll'] = df[['agent', 'currentStatus', 'status', 'type', 'priority']].to_dict(orient= 'records')  # convert dataframe to dict
+        
+        #Dropdown
+        DropdownList = {}
+        DropdownList['agent'] = df['agent'].unique().tolist()
+        DropdownList['type'] = df['type'].unique().tolist()
+        data['Dropdown'] = DropdownList
         
         return {'data': data}, 200  # return data and 200 OK
         
@@ -384,9 +433,20 @@ class CSSLAClosedTickets(Resource):
                 series.append(temp)
         dataClosedTickets['series'] = series  
         data = dataClosedTickets  # convert dataframe to dict
+
+        #TicketsAll
+        df= df.fillna('blank')
+        data['TicketsAll'] = df[['agent', 'solutionStatus', 'type', 'message']].to_dict(orient= 'records')  # convert dataframe to dict
         
+        #Dropdown
+        DropdownList = {}
+        DropdownList['message'] = df['message'].unique().tolist()
+        DropdownList['type'] = df['type'].unique().tolist()
+        data['Dropdown'] = DropdownList
+                
         return {'data': data}, 200  # return data and 200 OK
-        
+
+
                     
 class ServicesTeams(Resource):
     def get(self):
@@ -448,7 +508,8 @@ class ServicesEmployees(Resource):
         data['seriesDrill'] = drillTargetlist + drillResultlist + drillDifferenceYTDlist
 
         return {'data': data}, 200  # return data and 200 OK
-        
+
+
                     
 class DevelopmentProcessAdherenceScore(Resource):
     def get(self):
