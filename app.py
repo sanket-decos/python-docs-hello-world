@@ -206,6 +206,24 @@ class CSClosedTickets(Resource):
 
         data = {}
 
+        #TicketsByAgentMessage
+        datagroup = df.groupby(['agent', 'message']).size().reset_index(name='countt')
+        pivoted = datagroup.pivot(index='agent', columns= 'message', values='countt')
+        flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
+        dataTicketsByAgentMessage = {}
+        series = []
+        for col in flattened.columns:
+            if col == 'agent':
+                dataTicketsByAgentMessage['categories'] = flattened[col].values.tolist()
+            else:
+                temp = {}
+                temp['name'] = str(col)
+                temp['data'] = flattened[col].values.tolist()
+                series.append(temp)
+        dataTicketsByAgentMessage['series'] = series  
+        data['TicketsByAgentMessage'] = dataTicketsByAgentMessage  # convert dataframe to dict
+        
+
         #TicketsByGroup
         def ClubFunction(row):
             if row['groupName'] == 'Development':
@@ -226,7 +244,29 @@ class CSClosedTickets(Resource):
                 groupNameClubbed = 'Others'
             return groupNameClubbed
         df['groupNameClubbed'] = df.apply(ClubFunction, axis=1)
+        
+        dfTicketsByGroup = df.groupby(['groupNameClubbed']).size().reset_index(name='count')
+        #Sort
+        dfTicketsByGroup['groupNameClubbed_cat'] = pd.Categorical(
+            dfTicketsByGroup['groupNameClubbed'], 
+            categories=['Intake','Support 1e lijn','Support 2e lijn','Technisch consultants and Functioneel consultants','Development','Others'], 
+            ordered=True
+        )
+        dataTicketsByGroup = dfTicketsByGroup[['groupNameClubbed_cat', 'count']].sort_values('groupNameClubbed_cat')
+        data['TicketsByGroup'] = dataTicketsByGroup.to_json(orient ='values')
 
+        #TicketsByPriority
+        dataTicketsByPriority = df.groupby(['priority']).size().reset_index(name='count')
+        data['TicketsByPriority'] = dataTicketsByPriority.to_json(orient ='values')
+
+        #TicketsBySolutionStatus
+        dataTicketsBySolutionStatus = df.groupby(['solutionStatus']).size().reset_index(name='count')
+        data['TicketsBySolutionStatus'] = dataTicketsBySolutionStatus.to_json(orient ='values')
+        
+        #TicketsByCompanyname
+        dataTicketsByCompanyname = df.groupby(['companyName']).size().reset_index(name='count')
+        data['TicketsByCompanyname'] = dataTicketsByCompanyname.to_dict()  # convert dataframe to dict
+        
         #TicketsAll
         df= df.fillna('blank')
         #Sort
