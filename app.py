@@ -15,7 +15,7 @@ class CustomerSatisfactionTeams(Resource):
     def get(self):
 
         data = pd.read_csv('customerSatisfactionTeams.csv')  # read local CSV
-        data = data[['Team', 'Quarter', 'Rating']].sort_values(['Quarter'], ascending = [True], inplace = True)   
+        data = data.sort_values(by=['Quarter'], ascending=False)[['Team', 'Quarter', 'Rating']]
         pivoted = data.pivot(index='Quarter', columns= 'Team', values='Rating')
         flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
         data = flattened.to_dict()  # convert dataframe to dict
