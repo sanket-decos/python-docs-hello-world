@@ -15,7 +15,7 @@ class CustomerSatisfactionTeams(Resource):
     def get(self):
 
         data = pd.read_csv('customerSatisfactionTeams.csv')  # read local CSV
-        data = data[['Team', 'Quarter', 'Rating']]
+        data = data[['Team', 'Quarter', 'Rating']].sort_values(['Quarter'], ascending = [True], inplace = True)   
         pivoted = data.pivot(index='Quarter', columns= 'Team', values='Rating')
         flattened = pd.DataFrame(pivoted.to_records()).fillna(0)
         data = flattened.to_dict()  # convert dataframe to dict
@@ -298,8 +298,9 @@ class CSTimeAnalysis(Resource):
     def get(self):
 
         df = pd.read_csv('customerSupportSummary.csv')  # read local CSV
+        df = df.sort_values(['Quarter', 'MonthNumber'], ascending=[True, True])
         
-        datamain = df.groupby(['Quarter', 'Month'])["New", "Closed", "OpenTicketstodate"].sum().reset_index()
+        datamain = df.groupby(['Quarter', 'Month', 'MonthNumber'])["New", "Closed", "OpenTicketstodate"].sum().reset_index()
 
         data = {}
 
@@ -316,7 +317,8 @@ class CSTimeAnalysis(Resource):
         series = []
 
         for quarter in datamain['Quarter']:
-            dftemp = datamain[datamain.Quarter.isin([quarter])][['Month', 'New']]
+            dftemp = datamain[datamain.Quarter.isin([quarter])].sort_values(['MonthNumber'], ascending=[True])
+            dftemp = dftemp[['Month', 'New']]
             temp = {}
             temp['id'] = quarter + '- New'
             temp['data'] = dftemp.to_json(orient ='values')
@@ -324,7 +326,8 @@ class CSTimeAnalysis(Resource):
             series.append(temp)
             
         for quarter in datamain['Quarter']:
-            dftemp = datamain[datamain.Quarter.isin([quarter])][['Month', 'Closed']]
+            dftemp = datamain[datamain.Quarter.isin([quarter])].sort_values(['MonthNumber'], ascending=[True])
+            dftemp = dftemp[['Month', 'Closed']]
             temp = {}
             temp['id'] = quarter + '- Closed'
             temp['data'] = dftemp.to_json(orient ='values')
