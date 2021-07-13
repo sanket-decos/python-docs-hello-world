@@ -65,6 +65,12 @@ class CSOpenIncidents(Resource):
                 temp = {}
                 temp['name'] = str(col)
                 temp['data'] = flattened[col].values.tolist()
+                if str(col) == 'High':
+                    temp['color'] = '#FF3933'
+                if str(col) == 'Medium':
+                    temp['color'] = '#FFC433'
+                if str(col) == 'Low':
+                    temp['color'] = '#2BD33C'
                 series.append(temp)
         dataTicketsByTypePriority['series'] = series
         data['TicketsByTypePriority'] = dataTicketsByTypePriority
@@ -170,6 +176,12 @@ class CSAllOpenTickets(Resource):
                 temp = {}
                 temp['name'] = str(col)
                 temp['data'] = flattened[col].values.tolist()
+                if str(col) == 'High':
+                    temp['color'] = '#FF3933'
+                if str(col) == 'Medium':
+                    temp['color'] = '#FFC433'
+                if str(col) == 'Low':
+                    temp['color'] = '#2BD33C'
                 series.append(temp)
         dataTicketsByTypePriority['series'] = series  
         data['TicketsByTypePriority'] = dataTicketsByTypePriority  # convert dataframe to dict
@@ -385,6 +397,12 @@ class CSSLAOpenTickets(Resource):
                 temp = {}
                 temp['name'] = str(col)
                 temp['data'] = flattened[col].values.tolist()
+                if str(col) == 'High':
+                    temp['color'] = '#FF3933'
+                if str(col) == 'Medium':
+                    temp['color'] = '#FFC433'
+                if str(col) == 'Low':
+                    temp['color'] = '#2BD33C'
                 series.append(temp)
         dataOpenTickets['series'] = series  
         data['BarGraph'] = dataOpenTickets  # convert dataframe to dict
